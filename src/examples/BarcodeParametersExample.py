@@ -1,10 +1,10 @@
 from asposebarcode import Generation
-import TestAssist as ta
+import ExampleAssist as ea
 
 class BarcodeParametersExample:
  def setParametersExample(self):
-        print("---\nbarcodeParametersExample")
-        ta.set_license()
+        print("---\nsetParametersExample")
+        ea.set_license()
         newCodeText = "UPDATED_NEW"
         barColor = "#0C3925"
         autoSizeMode = Generation.AutoSizeMode.NEAREST
@@ -26,7 +26,7 @@ class BarcodeParametersExample:
         print("barCodeWidth: " + str(baseGenerationParameters.getImageWidth().getMillimeters()))
         barcodeParameters.getBarHeight().setMillimeters(barHeight)
         print("barHeight: " + str(barcodeParameters.getBarHeight().getMillimeters()))
-        path_to_save =  ta.results_root + "barcodeParametersExample.png"
+        path_to_save =  ea.results_root + "barcodeParametersExample.png"
         barcodeGenerator.save(path_to_save, "PNG")
         print("Image was saved to " + path_to_save)
 

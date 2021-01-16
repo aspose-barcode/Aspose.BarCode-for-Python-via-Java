@@ -1,6 +1,5 @@
 from asposebarcode import Recognition
-
-import TestAssist as ta
+import ExampleAssist as ta
 
 class BarcodeReaderExamples():
     def allSupportedTypesExample(self):
