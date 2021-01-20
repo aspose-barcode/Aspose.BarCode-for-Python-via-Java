@@ -26,7 +26,7 @@ def save_image(base_64_str, path):
         f.close()
         return os.path.exists(path)
     except Exception as ex:
-        print('Failed to upload to ftp: ' + str(ex))
+        print('Failed to save image\n ' + str(ex))
 
 
 def check_path(path):
@@ -48,6 +48,6 @@ def load_image_base64_from_path(filePath):
         image_data_binary = image_file.read()
         return (base64.b64encode(image_data_binary)).decode('ascii')
     except Exception as ex:
-        print('Failed to upload to ftp: ' + str(ex))
+        print('Failed to save image\n ' + str(ex))
 
 
