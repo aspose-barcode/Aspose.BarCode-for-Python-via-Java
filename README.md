@@ -56,7 +56,7 @@ Directory | Description
 
 ## Get Started with Aspose.BarCode for Python via Java
 
-- Install Python, version >= 3.6
+- Install Python, version >= 3.7
 - From [PyPi](https://pypi.org/project/aspose-barcode-for-python-via-java/) run the following PIP Command, `pip install aspose-barcode-for-python-via-java`.
 - Launch [example](https://github.com/aspose-barcode/Aspose.BarCode-for-Python-via-Java/tree/master/src/examples).
 
