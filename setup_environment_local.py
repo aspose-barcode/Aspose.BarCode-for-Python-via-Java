@@ -2,7 +2,8 @@ import os
 import subprocess
 import sys
 
-def create_and_activate_venv(venv_dir="venv"):
+
+def create_and_activate_venv(venv_dir="local_venv"):
     """
     Creates a virtual environment and ensures pip is available.
     """
@@ -21,18 +22,21 @@ def create_and_activate_venv(venv_dir="venv"):
     pip_path = os.path.join(venv_dir, 'Scripts', 'pip') if os.name == 'nt' else os.path.join(venv_dir, 'bin', 'pip')
     print(f"Step 2: Looking for pip at: {pip_path}")
 
-    # Check if pip exists
+    # Check if pip exists and install it if missing
     if not os.path.exists(pip_path):
-        print("pip not found. Attempting to install pip...")
+        print("pip not found. Attempting to install pip in the virtual environment...")
         try:
-            subprocess.check_call([sys.executable, '-m', 'ensurepip'])
-            subprocess.check_call([sys.executable, '-m', 'pip', 'install', '--upgrade', 'pip'])
+            # Use ensurepip to bootstrap pip into the virtual environment
+            python_executable = os.path.join(venv_dir, 'Scripts', 'python') if os.name == 'nt' else os.path.join(venv_dir, 'bin', 'python')
+            subprocess.check_call([python_executable, '-m', 'ensurepip', '--upgrade'])
+            subprocess.check_call([python_executable, '-m', 'pip', 'install', '--upgrade', 'pip'])
         except subprocess.CalledProcessError as e:
-            print(f"Error installing pip: {e}")
+            print(f"Error installing or upgrading pip: {e}")
             sys.exit(1)
 
+    # Re-check pip after installation/upgrade
     if not os.path.exists(pip_path):
-        print("Error: pip installation failed.")
+        print("Error: pip installation failed even after ensurepip.")
         sys.exit(1)
 
     print("Step 3: Virtual environment is ready.")
@@ -87,7 +91,7 @@ def check_java():
 if __name__ == '__main__':
     print("Starting environment setup...")
     check_java()
-    venv_dir = "venv"
+    venv_dir = "local_venv"  # Directory for the virtual environment
     pip_path = create_and_activate_venv(venv_dir)
     install_dependencies(pip_path)
     print("Environment setup complete!")
