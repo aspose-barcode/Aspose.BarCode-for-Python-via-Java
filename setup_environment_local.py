@@ -83,6 +83,12 @@ def check_java():
         print(f"Error: {e}")
         sys.exit(1)
 
+print("\nTo activate the virtual environment, run:")
+if os.name == 'nt':
+    print(r"local_venv\Scripts\activate")
+else:
+    print("source local_venv/bin/activate")
+
 
 if __name__ == '__main__':
     print("Starting environment setup...")
