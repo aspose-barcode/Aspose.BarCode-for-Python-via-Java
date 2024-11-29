@@ -83,10 +83,26 @@ PDF417, DataMatrix, Aztec, QR, MicroQR, GS1DataMatrix, Code16K, CompactPDF417, S
 ## Get Started with Aspose.BarCode for Python via Java
 
 1. Install Python, version >= 3.7.
-2. Install the library using PIP from [PyPI](https://pypi.org/project/aspose-barcode-for-python-via-java/):
+2. You can install required dependencies globally or to local repository.
+  - To install globally you can run script `setup_environment_global.py`.
+  - To install environment to local repository, you can run script `setup_environment_local.py`.
+It creates local_venv in the structure of project and pull in all required dependencies.
+After that you should activate `local_venv` by launch
+  ```bash
+    local_venv\Scripts\activate
+  ```
+  - You also can install the library using PIP from [PyPI](https://pypi.org/project/aspose-barcode-for-python-via-java/):
    ```bash
    pip install aspose-barcode-for-python-via-java
    ```
+  To install certain version to global environment: 
+   ```bash
+   pip install aspose-barcode-for-python-via-java==24.11.0
+  ```   
+To install certain version to localrepository: 
+   ```bash
+   pip install aspose-barcode-for-python-via-java==24.11.0 --upgrade -t ./local_venv
+  ```  
 3. Explore [Examples](https://github.com/aspose-barcode/Aspose.BarCode-for-Python-via-Java/tree/master/examples).
 
 ---
