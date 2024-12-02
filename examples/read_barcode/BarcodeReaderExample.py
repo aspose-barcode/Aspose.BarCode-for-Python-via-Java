@@ -1,83 +1,48 @@
-from asposebarcode import Recognition
-import ExampleAssist as ta
+import os
+import unittest
+from unittest.mock import Mock
 
-class BarcodeReaderExamples():
-    def allSupportedTypesExample(self):
-        print("\n----\nallSupportedTypesExample")
-        ta.set_license()
-        full_path = ta.test_data_root + "code128-example-1.jpg"
-        image_data_base64 = ta.load_image_base64_from_path(full_path)
-        reader = Recognition.BarcodeReader(image_data_base64, None, None)
-        recognized_results = reader.readBarCodes()
-        for x in recognized_results:
-            print(x.getCodeText())
-            print(x.getCodeTypeName())
+from asposebarcode import Assist
+from asposebarcode.Assist import Point
+from asposebarcode.Generation import BarcodeGenerator, EncodeTypes, Unit
+from asposebarcode.Recognition import BarCodeReader, DecodeType, QualitySettings, BarcodeQualityMode
+from ..utilities import ExampleAssist as ta
 
-    def setQualitySettingsExample1(self):
-        print("\n----\nsetQualitySettingsExample1")
-        ta.set_license()
-        full_path = ta.test_data_root + "code128-example-2.png"
-        reader = Recognition.BarcodeReader(full_path, None, None)
-        reader.setQualitySettings(Recognition.QualitySettings.getHighPerformance())
-        reader.getQualitySettings().setAllowMedianSmoothing(True)
-        reader.getQualitySettings().setMedianSmoothingWindowSize(5)
-        results = reader.readBarCodes()
-        i = 0
-        while (i < len(results)):
-            print(i)
-            print("code text: " + results[i].getCodeText())
-            print("code type: " +  results[i].getCodeTypeName())
-            i += 1
+class BarCodeReaderTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        # install the license once for the entire class of tests
+        ta.setLicense()
+        cls.image_path_code128 = os.path.join(ta.testdata_root, "Comments", "code128.jpg")
+        cls.image_path_code39 = os.path.join(ta.testdata_root, "Comments", "code39.jpg")
+        cls.xml_file1 = os.path.join(ta.testdata_root, "Comments", "test.xml")
+        cls.xml_file2 = os.path.join(ta.testdata_root, "Wrong", "test.xml")
 
-    def setQualitySettingsExample2(self):
-        print("\n----\nsetQualitySettingsExample2")
-        ta.set_license()
-        full_path = ta.test_data_root + "datamatrix-example-1.png"
-        reader = Recognition.BarcodeReader(full_path, None, None)
-        reader.setQualitySettings(Recognition.QualitySettings.getNormalQuality())
-        results = reader.readBarCodes()
-        i = 0
-        while (i < len(results)):
-            print(i)
-            print("code text: " + results[i].getCodeText())
-            print("code type: " + results[i].getCodeTypeName())
-            i += 1
-
-    def setQualitySettingsExample3(self):
-            print("\n----\nsetQualitySettingsExample3")
-            ta.set_license()
-            full_path = ta.test_data_root + "barcodes-document-example-1.jpg"
-            reader = Recognition.BarcodeReader(full_path, None, None)
-            reader.setQualitySettings(Recognition.QualitySettings.getHighQuality())
-            results = reader.readBarCodes()
-            i = 0
-            while (i < len(results)):
-                print(i)
-                print("code text: " + results[i].getCodeText())
-                print("code type: " + results[i].getCodeTypeName())
-                i += 1
-
-    def setQualitySettingsExample4(self):
-                print("setQualitySettingsExample4")
-                ta.set_license()
-                full_path = ta.test_data_root + "barcodes-document-example-2.jpg"
-                reader = Recognition.BarcodeReader(full_path, None, None)
-                reader.setQualitySettings(Recognition.QualitySettings.getHighPerformance())
-                results = reader.readBarCodes()
-                i = 0
-                while (i < len(results)):
-                    print(i)
-                    print("code text: " + results[i].getCodeText())
-                    print("code type: " + results[i].getCodeTypeName(), "\n\n")
-                    i += 1
+    def setUp(self):
+        self.barcodeReader = BarCodeReader(self.__class__.image_path_code128,None, DecodeType.CODE_128)
 
 
+    def test_exportToXml_raises_barcode_exception(self):
+        self.assertTrue(self.barcodeReader.exportToXml(self.xml_file1))
+        # check that the method raises BarcodeException when an exception occurs
+        with self.assertRaises(Assist.BarCodeException) as context:
+            self.barcodeReader.exportToXml(self.xml_file2)
+        # Make sure the exception contains the original message
+        self.assertIn("No such file or directory", str(context.exception))
 
+    def test_importFromXml_raises_barcode_exception(self):
+        self.assertTrue(self.barcodeReader.importFromXml(self.xml_file1))
+        # check that the method raises BarcodeException when an exception occurs
+        with self.assertRaises(Assist.BarCodeException) as context:
+            self.barcodeReader.importFromXml(self.xml_file2)
+        # Make sure the exception contains the original message
+        self.assertIn("No such file or directory", str(context.exception))
 
-barcodeReaderExamples = BarcodeReaderExamples()
-barcodeReaderExamples.allSupportedTypesExample()
-barcodeReaderExamples.setQualitySettingsExample1()
-barcodeReaderExamples.setQualitySettingsExample2()
-barcodeReaderExamples.setQualitySettingsExample3()
-barcodeReaderExamples.setQualitySettingsExample4()
-
+    def testGetMaxQuality(self):
+        qualitySettings = QualitySettings.getMaxQuality()
+        self.assertEqual(qualitySettings.getBarcodeQuality(),BarcodeQualityMode.LOW)
+        self.barcodeReader.setQualitySettings(qualitySettings)
+        results = self.barcodeReader.readBarCodes()
+        for result in results:
+            self.assertEqual(result.getCodeTypeName(), "Code128")
+            self.assertEqual(result.getCodeText(), "CODE128A")

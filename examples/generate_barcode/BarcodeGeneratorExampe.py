@@ -1,48 +1,50 @@
-from asposebarcode import Generation
-import ExampleAssist as ea
+from PIL import ImageColor
+from asposebarcode.Generation import BarCodeImageFormat, BarcodeGenerator, EncodeTypes, FontStyle
+
+from examples.utilities import ExampleAssist as ea
 
 class BarcodeGeneratorExamples():
     def generateBarcodeImageExample1(self):
         print("---\ngenerateBarcodeImageExample1")
         ea.set_license()
-        encode_type = Generation.EncodeTypes.CODE_128
-        generator = Generation.BarcodeGenerator(encode_type, None)
-        generator.setCodeText("123ABC")
+        encode_type = EncodeTypes.CODE_128
+        generator = BarcodeGenerator(encode_type, None)
+        generator.setCodeText("123ABC", None)
         path_to_save = ea.results_root + "code128_1.png"
-        generator.save(path_to_save, "PNG")
+        generator.save(path_to_save, BarCodeImageFormat.PNG)
         print("Image was saved to " + path_to_save)
 
     def generateBarcodeImageExample2(self):
         print("---\ngenerateBarcodeImageExample2")
         ea.set_license()
-        generator = Generation.BarcodeGenerator(Generation.EncodeTypes.CODABAR, "123456789")
+        generator = BarcodeGenerator(EncodeTypes.CODABAR, "123456789")
         path_to_save = ea.results_root + "codabar.png"
-        generator.save(path_to_save, "PNG")
+        generator.save(path_to_save, BarCodeImageFormat.PNG)
         print("Image was saved to " + path_to_save)
 
     def generateBarcodeImageExample3(self):
         print("---\ngenerateBarcodeImageExample3")
         ea.set_license()
-        generator = Generation.BarcodeGenerator(Generation.EncodeTypes.DATA_MATRIX, "123456789")
+        generator = BarcodeGenerator(EncodeTypes.DATA_MATRIX, "123456789")
         path_to_save = ea.results_root + "datamatrix.png"
-        image_base_64 = generator.generateBarcodeImage("PNG")
+        image_base_64 = generator.generateBarCodeImage()
         print("Image was saved to " + path_to_save)
 
     def setBarcodeTypeExample(self):
         print("---\nsetBarcodeTypeExample")
         ea.set_license()
-        generator = Generation.BarcodeGenerator(Generation.EncodeTypes.DATA_MATRIX, "123456789")
+        generator = BarcodeGenerator(EncodeTypes.DATA_MATRIX, "123456789")
         path_to_save = ea.results_root + "barcode_type.png"
-        new_type = Generation.EncodeTypes.CODABAR
+        new_type = EncodeTypes.CODABAR
         generator.setBarcodeType(new_type)
-        generator.save(path_to_save, "PNG")
+        generator.save(path_to_save, BarCodeImageFormat.PNG)
         print("Image was saved to " + path_to_save)
 
     def backColorExample(self):
             print("---\nbackColorExample")
             ea.set_license()
-            back_color = "#FF0000"
-            generator = Generation.BarcodeGenerator(Generation.EncodeTypes.CODE_39_STANDARD, '01234567')
+            back_color = ImageColor.getrgb("#FF0000")
+            generator = BarcodeGenerator(EncodeTypes.CODE_39, '01234567')
             params = generator.getParameters()
             back_color_default = generator.getParameters().getBackColor()
             print("Default back color: " + str(back_color_default))
@@ -50,36 +52,36 @@ class BarcodeGeneratorExamples():
             back_color_actual = generator.getParameters().getBackColor()
             print('new back color: ' + str(back_color_actual))
             path_to_save = ea.results_root + "backColorExample.png"
-            generator.save(path_to_save, "PNG")
+            generator.save(path_to_save, BarCodeImageFormat.PNG)
             print("Image was saved to " + path_to_save)
 
     def barColorExample(self):
         print("---\nbarColorExample")
-        bar_color = "#0000FF"
-        generator = Generation.BarcodeGenerator(Generation.EncodeTypes.CODE_39_STANDARD, '01234567')
+        bar_color = ImageColor.getrgb("#0000FF")
+        generator = BarcodeGenerator(EncodeTypes.CODE_39, '01234567')
         bar_color_default = generator.getParameters().getBarcode().getBarColor()
         print("Default bar color: " + str(bar_color_default))
         generator.getParameters().getBarcode().setBarColor(bar_color)
         bar_color= generator.getParameters().getBarcode().getBarColor()
         print('new bar color: ' + str(bar_color))
         path_to_save = ea.results_root + "barColorExample.png"
-        generator.save(path_to_save, "PNG")
+        generator.save(path_to_save, BarCodeImageFormat.PNG)
         print("Image was saved to " + path_to_save)
 
     def fontExample(self):
         print("---\nfontExample")
-        generator = Generation.BarcodeGenerator(Generation.EncodeTypes.CODE_128, None)
+        generator = BarcodeGenerator(EncodeTypes.CODE_128, None)
         generator.getParameters().getCaptionAbove().setText("CAPTION ABOVE")
         generator.getParameters().getCaptionAbove().setVisible(True)
-        generator.getParameters().getCaptionAbove().getFont().setStyle(Generation.FontStyle.ITALIC)
+        generator.getParameters().getCaptionAbove().getFont().setStyle(FontStyle.ITALIC)
         generator.getParameters().getCaptionAbove().getFont().getSize().setPoint(5)
         generator.getParameters().getCaptionBelow().setText("CAPTION BELOW")
         generator.getParameters().getCaptionBelow().setVisible(True)
-        generator.getParameters().getCaptionBelow().getFont().setStyle(Generation.FontStyle.BOLD)
+        generator.getParameters().getCaptionBelow().getFont().setStyle(FontStyle.BOLD)
         generator.getParameters().getCaptionBelow().getFont().getSize().setPixels(15)
         generator.getParameters().getCaptionAbove().getFont().setFamilyName("Verdana")
         path_to_save = ea.results_root + "fontExample.bmp"
-        generator.save(path_to_save, "BMP")
+        generator.save(path_to_save, BarCodeImageFormat.BMP)
         print("Image was saved to " + path_to_save)
 
 barcodeGeneratorExamples = BarcodeGeneratorExamples()
