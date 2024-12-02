@@ -7,19 +7,10 @@ Aspose.BarCode for Python via Java is a robust and reliable barcode generation a
 ---
 
 <p align="center">
-    <a title="Download complete Aspose.BarCode for Python via Java source code" href="https://github.com/aspose-barcode/Aspose.BarCode-for-Python-via-Java/archive/master.zip">
+    <a title="Download complete Aspose.BarCode for Python via Java Examples source code" href="https://github.com/aspose-barcode/Aspose.BarCode-for-Python-via-Java/archive/refs/heads/master.zip">
     <img src="https://raw.github.com/AsposeExamples/java-examples-dashboard/master/images/downloadZip-Button-Large.png" alt="Download Aspose.BarCode for Python via Java" />
     </a>
 </p>
-
----
-
-## Directory
-
-| Directory | Description |
-| --------- | ----------- |
-| [Examples](src/examples) | A collection of Python examples that help you learn the product features. |
-
 ---
 
 ## General Barcode Features
@@ -78,6 +69,35 @@ PDF417, DataMatrix, Aztec, QR, MicroQR, GS1DataMatrix, Code16K, CompactPDF417, S
 
 - **Images:** JPEG, TIFF, PNG, BMP.
 
+
+
+---
+
+## Project Structure
+
+This project provides examples and tools for working with **Aspose.BarCode for Python via Java**. 
+Below is a description of the main directories and their purposes.
+
+| Directory               | Description                                                                 |
+| ----------------------- | --------------------------------------------------------------------------- |
+| [docs](docs)            | Documentation files related to the project (if available).                 |
+| [examples](examples)    | A collection of Python examples to demonstrate the product features.       |
+| ├── barcode_parameters  | Examples of configuring and working with barcode parameters.               |
+| ├── generate_barcode    | Examples of generating barcodes using various configurations.              |
+| ├── read_barcode        | Examples of reading barcodes from different types of input.                |
+| ├── utilities           | Helper scripts and utilities for barcode processing.                      |
+| [local_venv](local_venv)| Virtual environment directory (created by `setup_environment_local.py`).   |
+| [resources](resources)  | Contains additional resources used in examples (input files, output files).|
+| ├── generated           | Directory where generated barcodes are saved.                             |
+| ├── input               | Input files used for examples (e.g., images with barcodes).               |
+| ├── license             | Placeholder for license files or information.                             |
+| .gitignore              | Specifies intentionally untracked files to ignore in the project.         |
+| README.md               | Project overview and instructions for setup and usage.                    |
+| requirements.txt        | List of dependencies required for the project.                            |
+| setup_environment_global.py | Script for setting up the environment globally.                       |
+| setup_environment_local.py  | Script for setting up the environment in a virtual environment.        |
+
+
 ---
 
 ## Get Started with Aspose.BarCode for Python via Java
@@ -118,7 +138,7 @@ PDF417, DataMatrix, Aztec, QR, MicroQR, GS1DataMatrix, Code16K, CompactPDF417, S
      pip install aspose-barcode-for-python-via-java==24.11.0
      ```
 
-     To install a specific version in a local directory (not in a virtual environment):
+     To install a specific version in a local directory:
      ```bash
      pip install aspose-barcode-for-python-via-java==24.11.0 --upgrade -t ./local_venv
      ```
