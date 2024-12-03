@@ -171,3 +171,6 @@ class BarCodeReaderExample(unittest.TestCase):
             self.assertEqual(results[i].getCodeText(), "6212345678ABCdef123#")
             self.assertEqual("AustraliaPost", results[i].getCodeTypeName())
             i += 1
+
+if __name__ == '__main__':
+    unittest.main()

@@ -164,3 +164,6 @@ class BarcodeResultExamples(unittest.TestCase):
 
         MacroPdf417Checksum = results[0].getExtended().getPdf417().getMacroPdf417Checksum()
         self.assertEqual(MacroPdf417Checksum, 4)
+
+if __name__ == '__main__':
+    unittest.main()
