@@ -2,13 +2,13 @@ import unittest
 from datetime import datetime
 
 from asposebarcode import Recognition, Generation, Assist
-from testassist import  TestAssist as ta
+from examples.utilities import ExampleAssist as ea
 
 
 class BarcodeResultExamples(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        ta.setLicense()
+        ea.set_license()
 
     def testBarcodeResultsParameters(self):
         generator = Generation.BarcodeGenerator(Generation.EncodeTypes.DATABAR_EXPANDED, "12345678")
@@ -38,19 +38,19 @@ class BarcodeResultExamples(unittest.TestCase):
         self.assertTrue(len(results) > 0)
 
         Quadrangle = results[0].getRegion().getQuadrangle()
-        self.assertTrue(Quadrangle.getLeftTop().equals(Assist.Point(11, 7)))
-        self.assertTrue(Quadrangle.getRightTop().equals(Assist.Point(206, 7)))
-        self.assertTrue(Quadrangle.getRightBottom().equals(Assist.Point(206, 63)))
-        self.assertTrue(Quadrangle.getLeftBottom().equals(Assist.Point(11, 63)))
+        self.assertTrue(Quadrangle.getLeftTop().__eq__(Assist.Point(11, 7)))
+        self.assertTrue(Quadrangle.getRightTop().__eq__(Assist.Point(206, 7)))
+        self.assertTrue(Quadrangle.getRightBottom().__eq__(Assist.Point(206, 63)))
+        self.assertTrue(Quadrangle.getLeftBottom().__eq__(Assist.Point(11, 63)))
 
         Angle = results[0].getRegion().getAngle()
         self.assertEqual(Angle, 0)
 
         Points = results[0].getRegion().getPoints()
-        self.assertTrue(Points[0].equals(Assist.Point(11, 7)))
-        self.assertTrue(Points[1].equals(Assist.Point(206, 7)))
-        self.assertTrue(Points[2].equals(Assist.Point(206, 63)))
-        self.assertTrue(Points[3].equals(Assist.Point(11, 63)))
+        self.assertTrue(Points[0].__eq__(Assist.Point(11, 7)))
+        self.assertTrue(Points[1].__eq__(Assist.Point(206, 7)))
+        self.assertTrue(Points[2].__eq__(Assist.Point(206, 63)))
+        self.assertTrue(Points[3].__eq__(Assist.Point(11, 63)))
 
         Rectangle = results[0].getRegion().getRectangle()
         self.assertEqual(Rectangle.getX(), 11)
