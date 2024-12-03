@@ -11,6 +11,7 @@ Aspose.BarCode for Python via Java is a robust and reliable barcode generation a
     <img src="https://raw.github.com/AsposeExamples/java-examples-dashboard/master/images/downloadZip-Button-Large.png" alt="Download Aspose.BarCode for Python via Java" />
     </a>
 </p>
+
 ---
 
 ## General Barcode Features
@@ -69,34 +70,31 @@ PDF417, DataMatrix, Aztec, QR, MicroQR, GS1DataMatrix, Code16K, CompactPDF417, S
 
 - **Images:** JPEG, TIFF, PNG, BMP.
 
-
-
 ---
 
 ## Project Structure
 
-This project provides examples and tools for working with **Aspose.BarCode for Python via Java**. 
-Below is a description of the main directories and their purposes.
+This project provides examples and tools for working with **Aspose.BarCode for Python via Java**. Below is a description of the main directories and their purposes.
 
-| Directory               | Description                                                                 |
-| ----------------------- | --------------------------------------------------------------------------- |
-| [docs](docs)            | Documentation files related to the project (if available).                 |
-| [examples](examples)    | A collection of Python examples to demonstrate the product features.       |
-| ├── barcode_parameters  | Examples of configuring and working with barcode parameters.               |
-| ├── generate_barcode    | Examples of generating barcodes using various configurations.              |
-| ├── read_barcode        | Examples of reading barcodes from different types of input.                |
-| ├── utilities           | Helper scripts and utilities for barcode processing.                      |
-| [local_venv](local_venv)| Virtual environment directory (created by `setup_environment_local.py`).   |
-| [resources](resources)  | Contains additional resources used in examples (input files, output files).|
-| ├── generated           | Directory where generated barcodes are saved.                             |
-| ├── input               | Input files used for examples (e.g., images with barcodes).               |
-| ├── license             | Placeholder for license files or information.                             |
-| .gitignore              | Specifies intentionally untracked files to ignore in the project.         |
-| README.md               | Project overview and instructions for setup and usage.                    |
-| requirements.txt        | List of dependencies required for the project.                            |
-| setup_environment_global.py | Script for setting up the environment globally.                       |
-| setup_environment_local.py  | Script for setting up the environment in a virtual environment.        |
-
+| Directory                   | Description                                                                 |
+| --------------------------- | --------------------------------------------------------------------------- |
+| [docs](docs)                | Documentation files related to the project (if available).                 |
+| [examples](examples)        | A collection of Python examples to demonstrate the product features.       |
+| ├── barcode_parameters      | Examples of configuring and working with barcode parameters.               |
+| ├── generate_barcode        | Examples of generating barcodes using various configurations.              |
+| ├── read_barcode            | Examples of reading barcodes from different types of input.                |
+| ├── utilities               | Helper scripts and utilities for barcode processing.                      |
+| [local_venv](local_venv)    | Virtual environment directory (created by `setup_environment_local.py`).   |
+| [resources](resources)      | Contains additional resources used in examples (input files, output files).|
+| ├── generated               | Directory where generated barcodes are saved.                             |
+| ├── input                   | Input files used for examples (e.g., images with barcodes).               |
+| ├── license                 | Placeholder for license files or information.                             |
+| .gitignore                  | Specifies intentionally untracked files to ignore in the project.         |
+| README.md                   | Project overview and instructions for setup and usage.                    |
+| requirements.txt            | List of dependencies required for the project.                            |
+| setup_environment_global.py | Script for setting up the environment globally.                           |
+| setup_environment_local.py  | Script for setting up the environment in a virtual environment.           |
+| setup_environment_local.cmd | Command file for easier setup of local environment on Windows.            |
 
 ---
 
@@ -116,10 +114,22 @@ Below is a description of the main directories and their purposes.
      This will install all required packages into the global Python environment.
 
    - **Install Dependencies Locally**  
-     To isolate dependencies for this project, use a local virtual environment. Run the following script:
+     To isolate dependencies for this project, use a local virtual environment. 
+
+     #### For Windows:
+     Run the following command file:
      ```bash
-     python setup_environment_local.py
+     setup_environment_local.cmd
      ```
+
+     #### For macOS/Linux:
+     Make the shell script executable and run it:
+     ```bash
+     chmod +x setup_environment_local.sh
+     ./setup_environment_local.sh
+     ```
+
+
      This will create a directory named `local_venv` in your project structure and install all required dependencies into it.  
 
      After running the script, activate the virtual environment:  
@@ -145,6 +155,7 @@ Below is a description of the main directories and their purposes.
 
 3. **Explore Examples**  
    Explore example usage of the library in the official [GitHub Examples Repository](https://github.com/aspose-barcode/Aspose.BarCode-for-Python-via-Java/tree/master/examples).
+
 ---
 
 [Product Page](https://products.aspose.com/barcode/python-java) | [Docs](https://docs.aspose.com/barcode/pythonjava/) | [Demos](https://products.aspose.app/barcode/family) | [API Reference](https://apireference.aspose.com/barcode/python) | [Examples](https://github.com/aspose-barcode/Aspose.BarCode-for-Python-via-Java/tree/master/src/examples) | [Blog](https://blog.aspose.com/category/barcode/) | [Search](https://search.aspose.com/) | [Free Support](https://forum.aspose.com/c/barcode) | [Temporary License](https://purchase.aspose.com/temporary-license)
