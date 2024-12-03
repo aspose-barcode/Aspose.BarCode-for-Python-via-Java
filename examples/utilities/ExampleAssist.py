@@ -2,7 +2,7 @@ import os
 import base64
 from asposebarcode import Assist
 
-pythonLicensePath = "../resources/license/Aspose.BarCode.Python.Java-1.lic"
+pythonLicensePath = "../../resources/license/Aspose.BarCode.Python.Java.lic"
 results_root = "../../resources/generated/"
 test_data_root = "../../resources/input/"
 
