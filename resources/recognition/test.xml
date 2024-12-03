@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Aspose.BarCode.Reader.Properties>
+  <QualitySettings>
+    <AllowIncorrectBarcodes>false</AllowIncorrectBarcodes>
+    <BarcodeQuality>NORMAL</BarcodeQuality>
+    <ComplexBackground>DISABLED</ComplexBackground>
+    <Deconvolution>NORMAL</Deconvolution>
+    <InverseImage>DISABLED</InverseImage>
+    <MinimalXDimension>1</MinimalXDimension>
+    <XDimension>NORMAL</XDimension>
+  </QualitySettings>
+  <BarcodeSettings>
+    <AustraliaPost>
+      <CustomerInformationInterpretingType>OTHER</CustomerInformationInterpretingType>
+      <IgnoreEndingFillingPatternsForCTable>true</IgnoreEndingFillingPatternsForCTable>
+    </AustraliaPost>
+    <ChecksumValidation>DEFAULT</ChecksumValidation>
+    <DetectEncoding>true</DetectEncoding>
+    <StripFNC>false</StripFNC>
+  </BarcodeSettings>
+  <Timeout>0</Timeout>
+</Aspose.BarCode.Reader.Properties>

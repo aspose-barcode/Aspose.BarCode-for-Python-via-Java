@@ -2,9 +2,9 @@ import os
 import base64
 from asposebarcode import Assist
 
-pythonLicensePath = "../resources/license/Aspose.BarCode.Python.Java-1.lic"
-results_root = "../resources/generated/"
-test_data_root = "../resources/input/"
+pythonLicensePath = "../../resources/license/Aspose.BarCode.Python.Java.lic"
+results_root = "../../resources/generated/"
+test_data_root = "../../resources/input/"
 
 def set_license():
     if (os.path.exists(pythonLicensePath)):
