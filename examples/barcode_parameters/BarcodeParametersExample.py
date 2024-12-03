@@ -1,12 +1,17 @@
-from asposebarcode import Generation
-import ExampleAssist as ea
+import unittest
 
-class BarcodeParametersExample:
- def setParametersExample(self):
-        print("---\nsetParametersExample")
+from asposebarcode import Generation
+from asposebarcode.Generation import BarCodeImageFormat
+
+from examples.utilities import ExampleAssist as ea
+
+class BarcodeParametersExample(unittest.TestCase):
+
+ def testSetParameters(self):
+        print("---\ntestSetParameters")
         ea.set_license()
         newCodeText = "UPDATED_NEW"
-        barColor = "#0C3925"
+        barColor = (255, 0, 0)
         autoSizeMode = Generation.AutoSizeMode.NEAREST
         barCodeHeight = 91
         barCodeWidth = 133
@@ -14,7 +19,7 @@ class BarcodeParametersExample:
         barcodeGenerator = Generation.BarcodeGenerator(Generation.EncodeTypes.CODE_128, "1234567891")
         baseGenerationParameters = barcodeGenerator.getParameters()
         barcodeParameters = baseGenerationParameters.getBarcode()
-        barcodeGenerator.setCodeText(newCodeText)
+        barcodeGenerator.setCodeText(newCodeText,"UTF-8")
         print("codeText: " + str(barcodeGenerator.getCodeText()))
         barcodeParameters.setBarColor(barColor)
         print("barColor: " + str(barcodeParameters.getBarColor()))
@@ -26,11 +31,7 @@ class BarcodeParametersExample:
         print("barCodeWidth: " + str(baseGenerationParameters.getImageWidth().getMillimeters()))
         barcodeParameters.getBarHeight().setMillimeters(barHeight)
         print("barHeight: " + str(barcodeParameters.getBarHeight().getMillimeters()))
-        path_to_save =  ea.results_root + "barcodeParametersExample.png"
-        barcodeGenerator.save(path_to_save, "PNG")
+        path_to_save =  ea.results_root + "barcode_parameters_example.png"
+        barcodeGenerator.save(path_to_save, BarCodeImageFormat.PNG)
         print("Image was saved to " + path_to_save)
-
-
-barcodeParametersExample = BarcodeParametersExample()
-barcodeParametersExample.setParametersExample()
 
